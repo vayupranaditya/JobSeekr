@@ -5,6 +5,30 @@ public class Company {
 	protected Industry industry;
 	protected Image logo;
 	
+	public void add() {
+		//add this object to database
+	}
+	
+	public void edit(String name, String address, String city, 
+			String website, String about, Industry industry, Image logo) {
+		if (name != "") this.setName(name);
+		if (city != "") this.setCity(city);
+		if (about != "") this.setAbout(about);
+		if (address != "") this.setAddress(address);
+		if (website != "") this.setWebsite(website);
+		if (industry != null) this.setIndustry(industry);
+		if (logo != null) this.setLogo(logo);
+	}
+	
+	public void delete() {
+		//delete this object from database
+	}
+	
+	public Company read() {
+		//read object of this from database
+		return this;
+	}
+	
 	public Company(String name, String address, String city, String website, Industry industry) {
 		 this.name = name;
 		 this.address = address;

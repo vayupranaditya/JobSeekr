@@ -13,9 +13,7 @@ public abstract class User {
 		 this.password = password;
 	}
 	
-	public abstract void create();
 	public abstract void add();
-	public abstract void update();
 	public abstract void delete();
 	
 	public String getName() {
