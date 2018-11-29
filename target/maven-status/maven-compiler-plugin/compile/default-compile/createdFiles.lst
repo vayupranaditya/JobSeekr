@@ -1,0 +1,14 @@
+model/Document.class
+model/Industry.class
+model/JobSeeker.class
+model/Job.class
+controller/Application.class
+model/JobApplication.class
+model/WorkExperience.class
+model/Resume.class
+model/Company.class
+model/Category.class
+model/User.class
+controller/RecruiterController.class
+model/Recruiter.class
+model/Cv.class
