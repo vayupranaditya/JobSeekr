@@ -1,6 +1,8 @@
 package controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
@@ -12,7 +14,7 @@ public class IndustryController {
 
 	ArrayList <Industry> industryList = new ArrayList <Industry>();
 
-    @RequestMapping("add")
+    @PostMapping("add")
     public Industry add(@RequestParam Map<String, String> params) {
         if (params.get("name").equals(null) && params.get("id").equals(null)) return null;
     	Industry newIndustry = new Industry(
@@ -23,12 +25,12 @@ public class IndustryController {
     	return newIndustry;
     }
 
-    @RequestMapping("index")
+    @GetMapping("index")
     public ArrayList <Industry> index() {
     	return industryList;
     }
 
-    @RequestMapping("view")
+    @GetMapping("view")
     public Industry view(@RequestParam String id) {
     	for (Industry industry: industryList) {
     		if (industry.getId().equals(id)) {
@@ -39,7 +41,7 @@ public class IndustryController {
     }
 
 
-    @RequestMapping("update")
+    @PostMapping("update")
     public Industry update(@RequestParam Map<String, String> params) {
     	for (Industry industry: industryList) {
     		if (industry.getId().equals(params.get("id"))) {
@@ -50,7 +52,7 @@ public class IndustryController {
     	return null;
     }
 
-    @RequestMapping("delete")
+    @PostMapping("delete")
     public String delete(@RequestParam String id) {
     	for (Industry industry: industryList) {
     		if (industry.getId().equals(id)) {

@@ -1,6 +1,8 @@
 package controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
@@ -12,7 +14,7 @@ public class CompanyController {
 
 	ArrayList <Company> companyList = new ArrayList <Company>();
 
-    // @RequestMapping("add")
+    // @PostMapping("add")
     // public Company add(@RequestParam Map<String, String> params) {
     // 	Company newCompany = new Company(
     //             params.get("name"), 
@@ -25,12 +27,12 @@ public class CompanyController {
     // 	return newCompany;
     // }
 
-    @RequestMapping("index")
+    @GetMapping("index")
     public ArrayList <Company> index() {
     	return companyList;
     }
 
-    @RequestMapping("view")
+    @GetMapping("view")
     public Company view(@RequestParam String name) {
     	for (Company company: companyList) {
     		if (company.getName().equals(name)) {
@@ -41,7 +43,7 @@ public class CompanyController {
     }
 
 
-    @RequestMapping("update")
+    @PostMapping("update")
     public Company update(@RequestParam Map<String, String> params) {
     	for (Company company: companyList) {
     		if (company.getName().equals(params.get("name"))) {
@@ -58,7 +60,7 @@ public class CompanyController {
     	return null;
     }
 
-    @RequestMapping("delete")
+    @PostMapping("delete")
     public String delete(@RequestParam String name) {
     	for (Company company: companyList) {
     		if (company.getName().equals(name)) {

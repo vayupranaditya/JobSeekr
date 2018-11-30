@@ -1,6 +1,8 @@
 package controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
@@ -13,14 +15,14 @@ public class RecruiterController {
 
 	ArrayList <Recruiter> recruiterList = new ArrayList <Recruiter>();
 
-    @RequestMapping("signup")
+    @PostMapping("signup")
     public Recruiter signup(@RequestParam Map<String, String> params) {
     	Recruiter newRecruiter = new Recruiter(params.get("name"), params.get("email"), params.get("password"));
     	recruiterList.add(newRecruiter);
     	return newRecruiter;
     }
     
-    @RequestMapping("signin")
+    @PostMapping("signin")
     public String signin(@RequestParam Map<String, String> params) {
     	for (Recruiter recruiter: recruiterList) {
     		if (recruiter.getEmail().equals(params.get("email"))) {
@@ -34,12 +36,12 @@ public class RecruiterController {
     	return "User not found!";
     }
 
-    @RequestMapping("index")
+    @GetMapping("index")
     public ArrayList <Recruiter> index() {
     	return recruiterList;
     }
 
-    @RequestMapping("view")
+    @GetMapping("view")
     public Recruiter view(@RequestParam String email) {
     	for (Recruiter recruiter: recruiterList) {
     		if (recruiter.getEmail().equals(email)) {
@@ -50,7 +52,7 @@ public class RecruiterController {
     }
 
 
-    @RequestMapping("update")
+    @PostMapping("update")
     public Recruiter update(@RequestParam Map<String, String> params) {
     	for (Recruiter recruiter: recruiterList) {
     		if (recruiter.getEmail().equals(params.get("email"))) {
@@ -68,7 +70,7 @@ public class RecruiterController {
     	return null;
     }
 
-    @RequestMapping("delete")
+    @PostMapping("delete")
     public String delete(@RequestParam String email) {
     	for (Recruiter recruiter: recruiterList) {
     		if (recruiter.getEmail().equals(email)) {
