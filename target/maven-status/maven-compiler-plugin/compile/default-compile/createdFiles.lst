@@ -4,7 +4,9 @@ model/JobSeeker.class
 model/Job.class
 controller/Application.class
 controller/IndustryController.class
+database/Database.class
 model/JobApplication.class
+controller/JobController.class
 model/WorkExperience.class
 model/Resume.class
 model/Company.class

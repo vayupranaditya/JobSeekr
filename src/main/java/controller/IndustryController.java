@@ -6,13 +6,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
+import java.sql.*;
 import model.Industry;
 
 @RestController
 @RequestMapping("industry")
 public class IndustryController {
-
-	ArrayList <Industry> industryList = new ArrayList <Industry>();
 
     @PostMapping("add")
     public Industry add(@RequestParam Map<String, String> params) {
@@ -21,45 +20,45 @@ public class IndustryController {
                 params.get("name"), 
                 params.get("id")
                 );
-    	industryList.add(newIndustry);
+    	// industryList.add(newIndustry);
+        newIndustry.save();
     	return newIndustry;
     }
 
     @GetMapping("index")
     public ArrayList <Industry> index() {
+        Industry industry = new Industry(null, null);
+        // ArrayList <Industry> industryList = industry.getAll();
+        ArrayList <Industry> industryList = new ArrayList <Industry>();
     	return industryList;
     }
 
     @GetMapping("view")
     public Industry view(@RequestParam String id) {
-    	for (Industry industry: industryList) {
-    		if (industry.getId().equals(id)) {
-				return industry;
-    		}
-    	}
-    	return null;
+    // public ArrayList <String> view(@RequestParam String id) {
+    	Industry industry = new Industry();
+        return industry.get(id);
+        // return industry;
     }
 
 
     @PostMapping("update")
     public Industry update(@RequestParam Map<String, String> params) {
-    	for (Industry industry: industryList) {
-    		if (industry.getId().equals(params.get("id"))) {
-				if (!params.get("name").equals("")) industry.setName(params.get("name"));
-				return industry;
-    		}
-    	}
-    	return null;
+    	Industry industry = new Industry();
+        industry = industry.get(params.get("id"));
+        industry.setName(params.get("name"));
+        industry.update();
+        return industry.get(params.get("id"));
     }
 
-    @PostMapping("delete")
-    public String delete(@RequestParam String id) {
-    	for (Industry industry: industryList) {
-    		if (industry.getId().equals(id)) {
-				industryList.remove(industry);
-				return "success";
-    		}
-    	}
-    	return "not found";
-    }
+    // @PostMapping("delete")
+    // public String delete(@RequestParam String id) {
+    // 	for (Industry industry: industryList) {
+    // 		if (industry.getId().equals(id)) {
+				// industryList.remove(industry);
+				// return "success";
+    // 		}
+    // 	}
+    // 	return "not found";
+    // }
 }
