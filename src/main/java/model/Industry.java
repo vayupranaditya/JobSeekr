@@ -1,6 +1,6 @@
 package model;
 
-class Industry {
+public class Industry {
 	protected String name, id;
 	
 	public Industry(String name, String id) {

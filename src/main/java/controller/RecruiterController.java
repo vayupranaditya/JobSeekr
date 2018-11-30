@@ -3,9 +3,9 @@ package controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.*;
 import model.User;
 import model.Recruiter;
-import java.util.*;
 
 @RestController
 @RequestMapping("recruiter")
@@ -39,6 +39,16 @@ public class RecruiterController {
     	return recruiterList;
     }
 
+    @RequestMapping("view")
+    public Recruiter view(@RequestParam String email) {
+    	for (Recruiter recruiter: recruiterList) {
+    		if (recruiter.getEmail().equals(email)) {
+				return recruiter;
+    		}
+    	}
+    	return null;
+    }
+
 
     @RequestMapping("update")
     public Recruiter update(@RequestParam Map<String, String> params) {
@@ -59,9 +69,9 @@ public class RecruiterController {
     }
 
     @RequestMapping("delete")
-    public String delete(@RequestParam Map<String, String> params) {
+    public String delete(@RequestParam String email) {
     	for (Recruiter recruiter: recruiterList) {
-    		if (recruiter.getEmail().equals(params.get("email"))) {
+    		if (recruiter.getEmail().equals(email)) {
 				recruiterList.remove(recruiter);
 				return "success";
     		}
