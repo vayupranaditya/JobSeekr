@@ -4,6 +4,8 @@ public class Category {
 	protected String id, name;
 	//id from Database (using autoIncrement)
 	
+	public Category() {
+	}
 	public Category(String name) {
 		 this.name = name;
 	}

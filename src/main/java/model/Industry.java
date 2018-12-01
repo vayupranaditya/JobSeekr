@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.*;
-import java.util.*;
 import database.Database;
 
 public class Industry implements Database{
@@ -17,7 +16,7 @@ public class Industry implements Database{
 	}
 
 	public void save() {
-		c
+		
 	}
 
 	// PENYEBAB ERROR
@@ -39,7 +38,7 @@ public class Industry implements Database{
  //            // return industryList;
  //            return new ArrayList <Industry>();
  //        } catch (Exception e) {
- //          System.err.println("Error!");
+ //          System.err.println("Industry error!");
  //          System.err.println(e.getMessage());
  //          return null;
  //        }	
@@ -61,7 +60,7 @@ public class Industry implements Database{
             conn.close();
             return ind;
         } catch (Exception e) {
-          	System.err.println("Error!");
+          	System.err.println("Industry error!");
           	System.err.println(e.getMessage());
           	return null;
         }
@@ -78,7 +77,7 @@ public class Industry implements Database{
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
-          	System.err.println("Error!");
+          	System.err.println("Industry error!");
           	System.err.println(e.getMessage());
         }
 	}
@@ -93,7 +92,7 @@ public class Industry implements Database{
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
-          	System.err.println("Error!");
+          	System.err.println("Industry error!");
           	System.err.println(e.getMessage());
         }
 	}

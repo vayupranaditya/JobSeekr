@@ -1,17 +1,17 @@
 package model;
 
-import java.util.*;
+import java.util.Date;
+import java.sql.*;
 import database.Database;
 
 public class Job implements Database{
-	protected int id;
+	protected long id;
 	protected String name, employmentType, jobSummary, minQualification, position;
 	protected Date expireDate;
 	protected long salary;
 	protected Company company;
 	protected Category category;
 	protected Industry industry;
-	protected ArrayList <JobApplication> JobApplication;
 
 	public Job() {
 	}
@@ -28,7 +28,6 @@ public class Job implements Database{
 		 this.company = company;
 		 this.category = category;
 		 this.industry = industry;
-		 this.JobApplication = new ArrayList<JobApplication>();
 	}
 	
 	public void save() {
@@ -36,24 +35,91 @@ public class Job implements Database{
             Class.forName(dbDriver);
             Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
             String query = "INSERT INTO job "
-            	+ "(name, employment_types, job_summary, min_qualification, position, expire_date, salary, company_id, category_id, industry_id)"
+            	+ "(name, employment_type, job_summary, min_qualification, position, expire_date, salary, company_id, category_id, industry_id)"
                 + " VALUE (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            java.sql.Date sqlExpireDate = new java.sql.Date(expireDate.getTime());
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setString (1, name);
             preparedStmt.setString (2, employmentType);
             preparedStmt.setString (3, jobSummary);
             preparedStmt.setString (4, minQualification);
             preparedStmt.setString (5, position);
-            preparedStmt.setDate (6, expireDate);
+            preparedStmt.setDate (6, sqlExpireDate);
             preparedStmt.setLong (7, salary);
-            preparedStmt.setString (8, company.getId());
+            preparedStmt.setLong (8, company.getId());
             preparedStmt.setString (9, category.getId());
             preparedStmt.setString (10, industry.getId());
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
-          System.err.println("Error!");
+          System.err.println("Job error!");
           System.err.println(e.getMessage());
+        }
+	}
+	
+	public Job get(long id) {
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "SELECT * FROM job WHERE id = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setLong (1, id);
+            ResultSet result = preparedStmt.executeQuery();
+			result.absolute(1);
+			id = result.getLong(1);
+			String name = result.getString(2);
+            String employmentType = result.getString(3);
+            String jobSummary = result.getString(4);
+            String minQualification = result.getString(5);
+            String position = result.getString(6);
+            Date expireDate = result.getDate(7);
+            long salary = result.getLong(8);
+            long companyId = result.getLong(9);
+            String categoryId = result.getString(10);
+            String industryId = result.getString(11);
+            Company company = new Company();
+//            company = company.get(companyId);
+            Category category = new Category();
+//            category = category.get(categoryId);
+            Industry industry = new Industry();
+            industry = industry.get(industryId);
+        	Job job = new Job(name, employmentType, jobSummary, minQualification, position, 
+				expireDate, salary, company, category, industry);
+            conn.close();
+            return job;
+        } catch (Exception e) {
+          	System.err.println("Job error!");
+          	System.err.println(e.getMessage());
+          	return null;
+        }
+	}
+
+	public void update() {
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "UPDATE job "
+            	+ "SET name = ?, employment_type = ?, job_summary = ? min_qualification = ?, position = ?, expire_date = ?, salary = ?, company_id = ?, category_id = ?, industry_id = ? "
+            	+ "WHERE id = ?";
+
+            java.sql.Date sqlExpireDate = new java.sql.Date(expireDate.getTime());
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, name);
+            preparedStmt.setString (2, employmentType);
+            preparedStmt.setString (3, jobSummary);
+            preparedStmt.setString (4, minQualification);
+            preparedStmt.setString (5, position);
+            preparedStmt.setDate (6, sqlExpireDate);
+            preparedStmt.setLong (7, salary);
+            preparedStmt.setLong (8, company.getId());
+            preparedStmt.setString (9, category.getId());
+            preparedStmt.setString (10, industry.getId());
+            preparedStmt.setLong (11, id);
+            preparedStmt.execute();
+            conn.close();
+        } catch (Exception e) {
+          	System.err.println("Job error!");
+          	System.err.println(e.getMessage());
         }
 	}
 	
@@ -76,11 +142,11 @@ public class Job implements Database{
             Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
             String query = "DELETE FROM job WHERE id = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString (1, id);
+            preparedStmt.setLong (1, id);
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
-          	System.err.println("Error!");
+          	System.err.println("Job error!");
           	System.err.println(e.getMessage());
         }
 	}
@@ -91,11 +157,11 @@ public class Job implements Database{
             Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
             String query = "SELECT * FROM job WHERE id = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString (1, id);
+            preparedStmt.setLong (1, id);
             ResultSet result = preparedStmt.executeQuery();
 			result.absolute(1);
-        	int id;
-        	String name, employmentType, jobSummary, minQualification, position, company_id, category_id, industry_id;
+        	long id, company_id, category_id;
+        	String name, employmentType, jobSummary, minQualification, position, industry_id;
         	Date expireDate;
         	long salary;
         	id = result.getInt(1);
@@ -104,15 +170,15 @@ public class Job implements Database{
         	jobSummary = result.getString(4);
         	minQualification = result.getString(5);
         	position = result.getString(6);
-        	company_id = result.getString(9);
-        	category_id = result.getString(10);
+        	company_id = result.getLong(9);
+        	category_id = result.getLong(10);
         	industry_id = result.getString(11);
         	expireDate = result.getDate(7);
         	salary = result.getLong(8);
         	Company company = new Company();
-        	company = company.get(company_id);
+//        	company = company.get(company_id);
         	Category category = new Category();
-        	category = category.get(category_id);
+//        	category = category.get(category_id);
         	Industry industry = new Industry();
         	industry = industry.get(industry_id);
         	Job job = new Job(name, employmentType, jobSummary, minQualification, position, 
@@ -120,15 +186,10 @@ public class Job implements Database{
             conn.close();
             return job;
         } catch (Exception e) {
-          	System.err.println("Error!");
+          	System.err.println("Job error!");
           	System.err.println(e.getMessage());
           	return null;
         }
-	}
-	
-	public void addApplication(JobSeeker jobSeeker, String summary, WorkExperience workExperience,
-			Cv cv, Resume resume) {
-		this.JobApplication.add(new JobApplication(jobSeeker, summary, workExperience, cv, resume));
 	}
 	
 	public void setCategory(Category category) {
@@ -169,10 +230,6 @@ public class Job implements Database{
 	
 	public void setSalary(long salary) {
 		this.salary = salary;
-	}
-	
-	public JobApplication getApplication(int num) {
-		return this.JobApplication.get(num);
 	}
 	
 	public Category getCategory() {

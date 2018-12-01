@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
-import java.sql.*;
 import model.Industry;
 
 @RestController
@@ -20,7 +19,6 @@ public class IndustryController {
                 params.get("name"), 
                 params.get("id")
                 );
-    	// industryList.add(newIndustry);
         newIndustry.save();
     	return newIndustry;
     }
@@ -54,7 +52,8 @@ public class IndustryController {
     @PostMapping("delete")
     public String delete(@RequestParam String id) {
     	Industry industry = new Industry();
-        IndustryController.delete();
+    	industry = industry.get(id);
+        industry.delete();
         return "Success";
     }
 }
