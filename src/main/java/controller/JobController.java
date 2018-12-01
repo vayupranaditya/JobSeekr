@@ -20,7 +20,7 @@ public class JobController {
         Category category = new Category();
 //        category = category.get(params.get("category"));
         Industry industry = new Industry();
-        industry = industry.get(params.get("industry_id"));
+        industry = industry.get(params.get("industry-id"));
     	Job newJob = new Job(
                 params.get("name"),
                 params.get("employment-type"),
