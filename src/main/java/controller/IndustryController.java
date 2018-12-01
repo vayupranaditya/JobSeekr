@@ -51,14 +51,10 @@ public class IndustryController {
         return industry.get(params.get("id"));
     }
 
-    // @PostMapping("delete")
-    // public String delete(@RequestParam String id) {
-    // 	for (Industry industry: industryList) {
-    // 		if (industry.getId().equals(id)) {
-				// industryList.remove(industry);
-				// return "success";
-    // 		}
-    // 	}
-    // 	return "not found";
-    // }
+    @PostMapping("delete")
+    public String delete(@RequestParam String id) {
+    	Industry industry = new Industry();
+        IndustryController.delete();
+        return "Success";
+    }
 }

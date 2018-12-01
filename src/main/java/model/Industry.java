@@ -17,20 +17,7 @@ public class Industry implements Database{
 	}
 
 	public void save() {
-		try {
-            Class.forName(dbDriver);
-            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
-            String query = "INSERT INTO industry (id, name)"
-                + " VALUE (?, ?)";
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString (1, id);
-            preparedStmt.setString (2, name);
-            preparedStmt.execute();
-            conn.close();
-        } catch (Exception e) {
-          System.err.println("Error!");
-          System.err.println(e.getMessage());
-        }
+		c
 	}
 
 	// PENYEBAB ERROR
@@ -88,6 +75,21 @@ public class Industry implements Database{
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setString (1, name);
             preparedStmt.setString (2, id);
+            preparedStmt.execute();
+            conn.close();
+        } catch (Exception e) {
+          	System.err.println("Error!");
+          	System.err.println(e.getMessage());
+        }
+	}
+
+	public void delete() {
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "DELETE FROM industry WHERE id = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, id);
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
