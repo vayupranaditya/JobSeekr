@@ -1,0 +1,23 @@
+.home-choose-user-box {
+	height: 50vh;
+	padding-top: 25%;
+	justify-content: center;
+}
+
+.divider {
+	padding: 0px  55%;
+}
+
+.vertical-line {
+	width: 2px;
+	height: 20vh;
+	background-color: #DDD;
+}
+
+.divider-content {
+	position: relative;
+	top: -1.2vh;
+	left: -3vh;
+	background-color: #FFF;
+	z-index: 1;
+}
