@@ -23,6 +23,32 @@ body {
 	position: relative;
 	top: -1.2vh;
 	left: -3vh;
-	background-color: #FFF;
 	z-index: 1;
+}
+
+.white-background {
+	background-color: #FFF;
+}
+
+.navbar {
+	border-bottom: 1px solid #BBB;
+}
+
+.menu {
+	margin-top: -6vh;
+	padding-top: 11vh;
+	min-height: 100vh;
+}
+
+.side-menu {
+	position: fixed;
+	left: -0.7vw;
+}
+
+.jobs-content {
+	padding-top: 5vh;
+}
+
+.dropdown-menu {
+	width: 100%;
 }
