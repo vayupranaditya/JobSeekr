@@ -38,11 +38,13 @@ body {
 	margin-top: -6vh;
 	padding-top: 11vh;
 	min-height: 100vh;
+	z-index: 1;
 }
 
 .side-menu {
 	position: fixed;
 	left: -0.7vw;
+	z-index: 0;
 }
 
 .jobs-content {
@@ -51,4 +53,32 @@ body {
 
 .dropdown-menu {
 	width: 100%;
+}
+
+.company-img-in-job-detail {
+	height: 20vh;
+	width: 20vh;
+	position: absolute;
+	left: 1vw;
+	bottom: -12vh;
+}
+
+.job-summary {
+	position: relative;
+	min-height: 9vh;
+}
+
+.custom-nav {
+	border-bottom: 1px solid #BBB;
+	height: 7vh;
+}
+
+.navbar-left {
+	z-index: 2;
+	border-bottom: 1px solid #BBB;
+	height: 7vh;
+}
+
+.navbar-center {
+	padding-top: 2vh;
 }
