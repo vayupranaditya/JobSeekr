@@ -1,6 +1,6 @@
 body {
 	background-color: #EEE;
-	min-height: 100vh;
+	min-height: 101vh;
 }
 
 .home-choose-user-box {
@@ -81,4 +81,12 @@ body {
 
 .navbar-center {
 	padding-top: 2vh;
+}
+
+.is-horizontal-center {
+	justify-content: center;
+}
+
+.single-container {
+	margin-top: 12.9vh;
 }

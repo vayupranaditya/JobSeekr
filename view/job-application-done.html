@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Job Detail | JobSeekr</title>
+    <title>Apply Done! | JobSeekr</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -84,69 +84,19 @@
           <div class="column is-4">
           </div>
           <div class="column is-8 jobs-content">
-            <div class="box">
-              <article class="media">
-                <div class="media-content job-summary">
-                  <div class="columns">
-                    <div class="column is-3">
-                      <figure class="image company-img-in-job-detail">
-                        <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-                      </figure>
-                    </div>
-                    <div class="column is-9">
-                      <div class="content">
-                        <div class="columns">
-                          <div class="column is-7">
-                            <span class="subtitle is-4">{{Job name}}</span> <br />
-                            <span class="subtitle is-5">{{Company name}}</span> <br />
-                            <span class="subtitle is-6">{{Location}} | {{Salary}} | {{Employment type}}</span>
-                          </div>
-                          <div class="column is-5">
-                            <div class="columns">
-                              <div class="column">
-                                <small>Posted on Nov 1 2018, until Dec 20 2018</small> <br />
-                              </div>
-                            </div>
-                            <div class="columns">
-                              <div class="column">
-                                <a class="button is-info is-large is-fullwidth">Apply now</a>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
-              <article class="media">
-                <div class="media-content">
-                  <div class="columns">
-                    <div class="column is-3">
-                    </div>
-                    <div class="column is-9">
-                      <div class="content">
-                        <span class="subtitle is-5">Job Summary</span> <br />
-                        <span class="subtitle is-6">{{Job Summary}}</span> <br />
-                        <br />
-                        <span class="subtitle is-5">Minimum Qualification</span> <br />
-                        <span class="subtitle is-6">{{Minimum Qualification}}</span> <br />
-                        <br />
-                        <span class="subtitle is-5">Category</span> <br />
-                        <span class="subtitle is-6">{{Category}}</span> <br />
-                        <br />
-                        <span class="subtitle is-5">Industry</span> <br />
-                        <span class="subtitle is-6">{{Industry}}</span> <br />
-                        <br />
-                        <span class="subtitle is-5">Office Address</span> <br />
-                        <span class="subtitle is-6">{{Office Address}}</span> <br />
-                        <br />
-                        
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </article>
+            <div class="box has-text-centered single-container">
+              <h4 class="subtitle has-text-weight-semibold is-4">Your application has been sent!</h4>
+              <div class="is-flex is-horizontal-center">
+                <figure class="image is-128x128">
+                  <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                </figure>
+              </div>
+              <br/>
+              <span class="subtitle is-5">Your application has been sent to</span><br/>
+              <span class="subtitle is-5">{{company.name}}. Give them some time to</span><br/>
+              <span class="subtitle is-5">review your application. You will notified soon!</span><br/>
+              <br/>
+              <a href="#" class="button is-info">&nbsp&nbspGot it!&nbsp&nbsp</a>
             </div>
           </div>
           <div class="column">
