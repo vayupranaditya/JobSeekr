@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Apply Job | JobSeekr</title>
+    <title>Profile | JobSeekr</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -95,10 +95,38 @@
                 </div>
                 <div class="column is-8">
                   <span class="title is-4">{{Name}}</span><br/>
-                  <span class="subtitle is-5">{{Address}}</span><br/>
-                  <span class="subtitle is-5">{{Email}}</span><br/>
-                  <span class="subtitle is-5">{{Phone number}}</span><br/>
-                  <button class="button is-info">&nbsp&nbspEdit&nbsp&nbsp</button>
+                  <br/>
+                  <form action="#" method="POST">
+                    <div class="columns">
+                      <div class="column is-10">
+                        <div class="field">
+                          <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" placeholder="Address">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-map-marker-alt"></i>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columns low-top-margin">
+                      <div class="column is-10">
+                        <div class="field">
+                          <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" placeholder="Phone number">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-phone"></i>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columns low-top-margin">
+                      <div class="column">
+                        <button class="button is-info">&nbsp&nbspEdit&nbsp&nbsp</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
                 <div class="column is-1">
                 </div>
@@ -107,11 +135,52 @@
             <div class="box">
               <div class="columns">
                 <div class="column is-3">
-                  <span class="subtitle is-4">Summary</span>
+                  <span class="subtitle is-4">Accout</span>
                 </div>
                 <div class="column is-8">
-                  <span class="subtitle is-5">{{Summary}}</span><br/>
-                  <button class="button is-info">&nbsp&nbspEdit&nbsp&nbsp</button>
+                  <form action="#" method="POST">
+                    <div class="columns">
+                      <div class="column is-10">
+                        <div class="field">
+                          <p class="control has-icons-left has-icons-right is-expanded">
+                            <input class="input" type="email" placeholder="Email">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-at"></i>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columns low-top-margin">
+                      <div class="column is-10">
+                        <div class="field">
+                          <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="password" placeholder="Password">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-unlock-alt"></i>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columns low-top-margin">
+                      <div class="column is-10">
+                        <div class="field">
+                          <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="password" placeholder="Repeat password">
+                            <span class="icon is-small is-left">
+                              <i class="fas fa-unlock-alt"></i>
+                            </span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="columns low-top-margin">
+                      <div class="column">
+                        <button class="button is-info">&nbsp&nbspEdit&nbsp&nbsp</button>
+                      </div>
+                    </div>
+                  </form>
                 </div>
                 <div class="column is-1">
                 </div>
@@ -176,7 +245,6 @@
                 </div>
               </div>
             </div>
-            <a href="#" class="button is-info is-fullwidth is-medium">Apply for job!</a>
           </div>
           <div class="column">
           </div>

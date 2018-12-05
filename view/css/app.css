@@ -3,6 +3,10 @@ body {
 	min-height: 101vh;
 }
 
+.light-grey-background {
+	background-color: #EEE;
+}
+
 .home-choose-user-box {
 	height: 50vh;
 	padding-top: 25%;
@@ -89,4 +93,16 @@ body {
 
 .single-container {
 	margin-top: 12.9vh;
+}
+
+.low-top-margin {
+	margin-top: -3vh;
+}
+
+.rounded {
+	border-radius: 50%;
+}
+
+.push-inside {
+	padding: 1%;
 }
