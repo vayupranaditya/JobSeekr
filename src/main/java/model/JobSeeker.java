@@ -1,22 +1,53 @@
 package model;
 
 import java.util.ArrayList;
+import java.sql.*;
+import database.Database;
 
-public class JobSeeker extends User{
+public class JobSeeker extends User implements Database{
 	
 	protected String username, address, phoneNumber, summary;
 	protected Cv cv;
 	protected Resume resume;
 	protected ArrayList <WorkExperience> workExperience;
-	
+
 	public JobSeeker(String name, String email, String password) {
 		super(name, email, password);
 		workExperience = new ArrayList<WorkExperience>();
 	}
 
+	public JobSeeker(String name, String email, String password, String username, String address, String phoneNumber, String summary, Cv cv, Resume resume) {
+		super(name, email, password);
+		this.username = username;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.summary = summary;
+		this.cv = cv;
+		this.resume = resume;
+		workExperience = new ArrayList<WorkExperience>();
+	}
+
+	public void JobSeeker() {
+		workExperience = new ArrayList<WorkExperience>();
+	}
+
 	@Override
 	public void add() {
-		// TODO Auto-generated method stub
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "INSERT INTO jobseeker "
+            	+ "(name, email, password)"
+                + " VALUE (?, ?, ?)";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, name);
+            preparedStmt.setString (2, email);
+            preparedStmt.setString (3, password);
+            preparedStmt.execute();
+            conn.close();
+        } catch (Exception e) {
+          System.err.println(e.getMessage());
+        }
 		
 	}
 

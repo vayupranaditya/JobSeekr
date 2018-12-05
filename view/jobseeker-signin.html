@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/app.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
-  <body>
+  <body onload="addCsrf()">
   <section class="section">
     <div class="container">
       <div class="columns">
@@ -27,7 +27,7 @@
               <div class="column is-2">
               </div>
             </div>
-            <form action="#" method="POST">
+            <form class="form" action="#" method="POST">
               <div class="box-title">
                 <br/>
                 <h4 class="subtitle is-4">Signin as jobseeker</h4>
@@ -62,7 +62,7 @@
                 </div>
               </div><br />
             </form>
-            <form action="#" method="POST">
+            <form class="form" id="jobseeker-signup" action="http://localhost:8000/register" method="POST">
               <div class="box-title">
                 <br/>
                 <h4 class="subtitle is-4">Signup as jobseeker</h4>
@@ -73,7 +73,7 @@
                 <div class="column is-8">
                   <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                      <input class="input" type="text" placeholder="Name">
+                      <input id="jobseeker-signup-name-input" class="input" type="text" placeholder="Name" name="name">
                       <span class="icon is-small is-left">
                         <i class="fas fa-user"></i>
                       </span>
@@ -81,7 +81,7 @@
                   </div>
                   <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                      <input class="input" type="email" placeholder="Email">
+                      <input id="jobseeker-signup-email-input" class="input" type="email" placeholder="Email" name="email">
                       <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                       </span>
@@ -89,7 +89,7 @@
                   </div>
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input class="input" type="password" placeholder="Password">
+                      <input id="jobseeker-signup-password-input" class="input" type="password" placeholder="Password" name="password">
                       <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                       </span>
@@ -97,7 +97,7 @@
                   </div>
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input class="input" type="password" placeholder="Repeat password">
+                      <input id="jobseeker-signup-password-confirm-input" class="input" type="password" placeholder="Repeat password" name="password_confirmation">
                       <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                       </span>
@@ -113,7 +113,7 @@
                   </div>
                   <div class="field">
                     <p class="control">
-                      <input class="button is-info is-fullwidth" type="submit" name="submit" value="Signup">
+                      <button onclick="jobseekerSignup()" id="jobseeker-signup-btn" class="button is-info is-fullwidth" name="btnSubmit" type="button">Signup</button>
                     </p>
                   </div>
                 </div>
@@ -129,4 +129,5 @@
     </div>
   </section>
   </body>
+  <script defer src="js/auth.js"></script>
 </html>
