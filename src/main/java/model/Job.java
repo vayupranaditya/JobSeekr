@@ -47,8 +47,11 @@ public class Job implements Database{
             preparedStmt.setDate (6, sqlExpireDate);
             preparedStmt.setLong (7, salary);
             preparedStmt.setLong (8, company.getId());
-            preparedStmt.setString (9, category.getId());
+            System.out.println(preparedStmt.toString());
+            preparedStmt.setLong (9, category.getId());
+            System.out.println(preparedStmt.toString());
             preparedStmt.setString (10, industry.getId());
+            System.out.println(preparedStmt.toString());
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
@@ -112,7 +115,7 @@ public class Job implements Database{
             preparedStmt.setDate (6, sqlExpireDate);
             preparedStmt.setLong (7, salary);
             preparedStmt.setLong (8, company.getId());
-            preparedStmt.setString (9, category.getId());
+            preparedStmt.setLong (9, category.getId());
             preparedStmt.setString (10, industry.getId());
             preparedStmt.setLong (11, id);
             preparedStmt.execute();
@@ -140,14 +143,15 @@ public class Job implements Database{
 		try {
             Class.forName(dbDriver);
             Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
-            String query = "DELETE FROM job WHERE id = ?";
+            String query = 
+            	"DELETE FROM job " 
+	                + " WHERE id = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setLong (1, id);
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
-          	System.err.println("Job error!");
-          	System.err.println(e.getMessage());
+          System.err.println(e.getMessage());
         }
 	}
 	
@@ -158,6 +162,7 @@ public class Job implements Database{
             String query = "SELECT * FROM job WHERE id = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setLong (1, id);
+            System.out.println(preparedStmt.toString());
             ResultSet result = preparedStmt.executeQuery();
 			result.absolute(1);
         	long id, company_id, category_id;

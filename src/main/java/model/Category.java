@@ -1,7 +1,8 @@
 package model;
 
 public class Category {
-	protected String id, name;
+	protected String name;
+	protected long id;
 	//id from Database (using autoIncrement)
 	
 	public Category() {
@@ -10,7 +11,7 @@ public class Category {
 		 this.name = name;
 	}
 	
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 	

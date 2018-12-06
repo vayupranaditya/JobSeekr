@@ -50,7 +50,7 @@ public class JobSeeker extends User implements Database{
             conn.close();
         } catch (Exception e) {
           System.err.println(e.getMessage());
-        }		
+        }
 	}
 
 	public JobSeeker get(String email) {
@@ -127,7 +127,6 @@ public class JobSeeker extends User implements Database{
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {
-
           	System.err.println(e.getMessage());
         }
 	}

@@ -1,32 +1,109 @@
 package model;
 
-public class Recruiter extends User{
-	protected String userName, address, email, phoneNumber;
+import java.util.ArrayList;
+import java.sql.*;
+import database.Database;
+
+public class Recruiter extends User implements Database{
+	protected String username, address, phoneNumber;
 	protected Company company;
+
+	public Recruiter(){
+	}
 	
 	public Recruiter(String name, String email, String password) {
 		 super(name, email, password);
+	}
+
+	public Recruiter(String name, String email, String password, String username, String address, String phoneNumber, Company company) {
+		 super(name, email, password);
+		 this.username = username;
+		 this.address = address;
+		 this.phoneNumber = phoneNumber;
+		 this.company = company;
 	}
 	
 	
 	@Override
 	public void add() {
-		// add this object to database
-		
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "INSERT INTO recruiter "
+            	+ "(name, email, password)"
+                + " VALUE (?, ?, ?)";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, name);
+            preparedStmt.setString (2, email);
+            preparedStmt.setString (3, password);
+            preparedStmt.execute();
+            conn.close();
+        } catch (Exception e) {
+          System.err.println(e.getMessage());
+        }
 	}
 
-	public void update(String userName, String address, String email, String phoneNumber, Company company) {
-		 if (userName != "") this.setUserName(userName);
-		 if (address != "") this.setAddress(address);
-		 if (email != "") this.setEmail(email);
-		 if (phoneNumber != "") this.setPhoneNumber(phoneNumber);
-		 if (company != null) this.setCompany(company);
+	public Recruiter get(String email) {
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "SELECT * FROM recruiter WHERE email = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, email);
+            ResultSet result = preparedStmt.executeQuery();
+			result.absolute(1);
+        	String resultName, resultEmail, resultPassword, resultUsername, resultAddress, resultPhoneNumber;
+        	Long resultCompanyId;
+			Company resultCompany;
+			resultCompany = new Company();
+			resultName = result.getString("name");
+			resultEmail = result.getString("email");
+			resultPassword = result.getString("password");
+			resultUsername = result.getString("username");
+			resultAddress = result.getString("address");
+			resultPhoneNumber = result.getString("phoneNumber");
+			resultCompanyId = result.getLong("company_id");
+			resultCompany = resultCompany.get(resultCompanyId);
+        	Recruiter recruiter = new Recruiter(
+        		resultName, 
+        		resultEmail, 
+        		resultPassword, 
+        		resultUsername,
+        		resultAddress,
+        		resultPhoneNumber,
+        		resultCompany);
+            conn.close();
+            return recruiter;
+        } catch (Exception e) {
+          	System.err.println("Industry error!");
+          	System.err.println(e.getMessage());
+          	return null;
+        }
 	}
+
+	// public void update(String username, String address, String email, String phoneNumber, Company company) {
+	// 	 if (username != "") this.setusername(username);
+	// 	 if (address != "") this.setAddress(address);
+	// 	 if (email != "") this.setEmail(email);
+	// 	 if (phoneNumber != "") this.setPhoneNumber(phoneNumber);
+	// 	 if (company != null) this.setCompany(company);
+	// }
 
 	@Override
 	public void delete() {
-		// remove this object from database
-		
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = 
+            	"DELETE FROM recruiter " 
+	                + " WHERE email = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, email);
+            preparedStmt.execute();
+            conn.close();
+        } catch (Exception e) {
+          System.err.println(e.getMessage());
+        }
 	}
 	
 	@Override
@@ -59,8 +136,8 @@ public class Recruiter extends User{
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	@Override
@@ -93,7 +170,7 @@ public class Recruiter extends User{
 		return phoneNumber;
 	}
 	
-	public String getUserName() {
-		return userName;
+	public String getusername() {
+		return username;
 	}
 }

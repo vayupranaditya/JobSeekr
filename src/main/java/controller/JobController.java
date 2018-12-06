@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.*;
+import java.text.SimpleDateFormat;
 import model.*;
 
 @RestController
@@ -20,7 +21,7 @@ public class JobController {
         Category category = new Category();
 //        category = category.get(params.get("category"));
         Industry industry = new Industry();
-        industry = industry.get(params.get("industry-id"));
+        // industry = industry.get(params.get("industry-id"));
     	Job newJob = new Job(
                 params.get("name"),
                 params.get("employment-type"),
@@ -60,13 +61,14 @@ public class JobController {
     }
 
     @PostMapping("delete")
-    public String delete(@RequestParam String id) {
-//    	for (Job job: jobList) {
-//    		if (job.getId().equals(id)) {
-//				jobList.remove(job);
-//				return "success";
-//    		}
-//    	}
-    	return "not found";
+    public String delete(@RequestParam long id) {
+        Job job = new Job();
+        job = job.get(id);
+        if (job != null) {
+            job.delete();
+            return "{\"Message\": 200}";
+        } else {
+            return "{\"Code\": 404}";
+        }
     }
 }

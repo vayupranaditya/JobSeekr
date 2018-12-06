@@ -6,14 +6,14 @@
 [ ] Signout
 [x] Delete account
 ### Recruiter
-[ ] Signup
-[ ] Signin
+[x] Signup
+[x] Signin
 [ ] Edit Profile
 [ ] Signout
-[ ] Delete account
+[x] Delete account
 ### Job
-[ ] Add
-[ ] Get
+[x] Add
+[x] Get
 [ ] Index
 [ ] Search
 [ ] Update

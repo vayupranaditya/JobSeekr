@@ -46,24 +46,25 @@ public class Industry implements Database{
 	// END PENYEBAB ERROR
 
 	public Industry get(String id) {
-		try {
-            Class.forName(dbDriver);
-            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
-            String query = "SELECT * FROM industry WHERE id = ?";
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString (1, id);
-            ResultSet result = preparedStmt.executeQuery();
-			result.absolute(1);
-        	String resultName = result.getString(2);
-        	String resultId = result.getString(1);
-        	Industry ind = new Industry(resultName, resultId);
-            conn.close();
-            return ind;
-        } catch (Exception e) {
-          	System.err.println("Industry error!");
-          	System.err.println(e.getMessage());
-          	return null;
-        }
+		// try {
+  //           Class.forName(dbDriver);
+  //           Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+  //           String query = "SELECT * FROM industry WHERE id = ?";
+  //           PreparedStatement preparedStmt = conn.prepareStatement(query);
+  //           preparedStmt.setString (1, id);
+  //           ResultSet result = preparedStmt.executeQuery();
+		// 	result.absolute(1);
+  //       	String resultName = result.getString(2);
+  //       	String resultId = result.getString(1);
+  //       	Industry ind = new Industry(resultName, resultId);
+  //           conn.close();
+  //           return ind;
+  //       } catch (Exception e) {
+  //         	System.err.println("Industry error!");
+  //         	System.err.println(e.getMessage());
+  //         	return null;
+  //       }
+		return null;
 	}
 
 	public void update() {

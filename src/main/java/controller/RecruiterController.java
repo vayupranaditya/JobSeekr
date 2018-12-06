@@ -19,21 +19,24 @@ public class RecruiterController {
     public Recruiter signup(@RequestParam Map<String, String> params) {
     	Recruiter newRecruiter = new Recruiter(params.get("name"), params.get("email"), params.get("password"));
     	recruiterList.add(newRecruiter);
-    	return newRecruiter;
+        newRecruiter.add();
+    	return newRecruiter.get(params.get("email"));
     }
     
     @PostMapping("signin")
     public String signin(@RequestParam Map<String, String> params) {
-    	for (Recruiter recruiter: recruiterList) {
-    		if (recruiter.getEmail().equals(params.get("email"))) {
-    			if (recruiter.getPassword().equals(params.get("password"))) {
-    				return "Logged in!";
-    			} else {
-    				return "Wrong password specified!";
-    			}
-    		}
-    	}
-    	return "User not found!";
+    	Recruiter recruiter = new Recruiter();
+        recruiter = recruiter.get(params.get("email"));
+        if (recruiter != null) {
+            if (recruiter.getPassword().equals(params.get("password"))) {
+                return "{\"email\": \"" + recruiter.getEmail() + "\","
+                    + "\"code\": 200}";
+            } else {
+                return "{\"Code\": 403}";
+            }
+        } else {
+            return "{\"Code\": 404}";
+        }
     }
 
     @GetMapping("index")
@@ -59,7 +62,7 @@ public class RecruiterController {
 				if (!params.get("name").equals("")) recruiter.setName(params.get("name"));
 				if (!params.get("email").equals("")) recruiter.setEmail(params.get("email"));
 				if (!params.get("password").equals("")) recruiter.setPassword(params.get("password"));
-				if (!params.get("userName").equals("")) recruiter.setUserName(params.get("userName"));
+				if (!params.get("username").equals("")) recruiter.setUsername(params.get("username"));
 				if (!params.get("address").equals("")) recruiter.setAddress(params.get("address"));
 				if (!params.get("email").equals("")) recruiter.setEmail(params.get("email"));
 				if (!params.get("phoneNumber").equals("")) recruiter.setPhoneNumber(params.get("phoneNumber"));
@@ -72,12 +75,13 @@ public class RecruiterController {
 
     @PostMapping("delete")
     public String delete(@RequestParam String email) {
-    	for (Recruiter recruiter: recruiterList) {
-    		if (recruiter.getEmail().equals(email)) {
-				recruiterList.remove(recruiter);
-				return "success";
-    		}
-    	}
-    	return "not found";
+        Recruiter recruiter = new Recruiter();
+        recruiter = recruiter.get(email);
+        if (recruiter != null) {
+            recruiter.delete();
+            return "{\"Message\": 200}";
+        } else {
+            return "{\"Code\": 404}";
+        }
     }
 }
