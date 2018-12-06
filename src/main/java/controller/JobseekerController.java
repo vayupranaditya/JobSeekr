@@ -25,7 +25,6 @@ class JobSeekerController {
     
     @PostMapping("signin")
     public String signin(@RequestParam Map<String, String> params) {
-        JobSeeker jobseeker = new JobSeeker();
         jobseeker = jobseeker.get(params.get("email"));
         if (jobseeker != null) {
             if (jobseeker.getPassword().equals(params.get("password"))) {

@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="js/job.js"></script>
+    <script defer src="js/auth.js"></script>
   </head>
-  <body>
+  <body onload="callFunctions()">
     <nav class="white-background custom-nav" role="navigation" aria-label="main navigation">
       <div class="columns">
         <div class="column is-4 navbar-left">
@@ -38,12 +40,12 @@
         </div>
         <div class="column is-2">
           <div class="navbar-item has-dropdown is-hoverable is-pulled-right">
-            <a class="navbar-link">
+            <a class="navbar-link jobseeker-name">
               {Username}
             </a>
 
             <div class="navbar-dropdown">
-              <a class="navbar-item">
+              <a class="navbar-item" href="jobseeker-profile.html">
                 <span class="icon is-small is-left">
                   <i class="fas fa-user-cog"></i>
                 </span>
@@ -56,7 +58,7 @@
                 &nbsp&nbsp Report an issue
               </a>
               <hr class="navbar-divider">
-              <a class="navbar-item">
+              <a class="navbar-item" onClick="signout()">
                 <span class="icon is-small is-left">
                   <i class="fas fa-sign-out-alt"></i>
                 </span>
@@ -97,14 +99,18 @@
                       <div class="content">
                         <div class="columns">
                           <div class="column is-7">
-                            <span class="subtitle is-4">{{Job name}}</span> <br />
-                            <span class="subtitle is-5">{{Company name}}</span> <br />
-                            <span class="subtitle is-6">{{Location}} | {{Salary}} | {{Employment type}}</span>
+                            <span class="subtitle is-4 job-name">{{Job name}}</span> <br />
+                            <span class="subtitle is-5 company-name">{{Company name}}</span> <br />
+                            <span class="subtitle is-6 company-city">{{Location}}</span>
+                            <span class="subtitle is-6"> | IDR </span>
+                            <span class="subtitle is-6 job-salary">{{Salary}}</span>
+                            <span class="subtitle is-6"> | </span>
+                            <span class="subtitle is-6 job-employment">{{Employment type}}</span>
                           </div>
                           <div class="column is-5">
                             <div class="columns">
-                              <div class="column">
-                                <small>Posted on Nov 1 2018, until Dec 20 2018</small> <br />
+                              <div class="column has-text-right">
+                                <small>Before </small><small class="job-expire-date">Posted on Nov 1 2018, until Dec 20 2018</small> <br />
                               </div>
                             </div>
                             <div class="columns">
@@ -127,19 +133,21 @@
                     <div class="column is-9">
                       <div class="content">
                         <span class="subtitle is-5">Job Summary</span> <br />
-                        <span class="subtitle is-6">{{Job Summary}}</span> <br />
+                        <span class="subtitle is-6 job-summary-info">{{Job Summary}}</span> <br />
                         <br />
                         <span class="subtitle is-5">Minimum Qualification</span> <br />
-                        <span class="subtitle is-6">{{Minimum Qualification}}</span> <br />
+                        <span class="subtitle is-6 job-minimum">{{Minimum Qualification}}</span> <br />
                         <br />
                         <span class="subtitle is-5">Category</span> <br />
-                        <span class="subtitle is-6">{{Category}}</span> <br />
+                        <span class="subtitle is-6 category-name">{{Category}}</span> <br />
                         <br />
                         <span class="subtitle is-5">Industry</span> <br />
-                        <span class="subtitle is-6">{{Industry}}</span> <br />
+                        <span class="subtitle is-6 industry-name">{{Industry}}</span> <br />
                         <br />
                         <span class="subtitle is-5">Office Address</span> <br />
-                        <span class="subtitle is-6">{{Office Address}}</span> <br />
+                        <span class="subtitle is-6 company-address">{{Office Address}}</span>
+                        <span class="subtitle is-6">, </span>
+                        <span class="subtitle is-6 company-city">{{Office City}}</span> <br />
                         <br />
                         
                       </div>
@@ -154,4 +162,14 @@
         </div>
       </div>
   </body>
+  <script>
+    function callFunctions() {
+      checkAuth();
+      formatForUser();
+      formatJob();
+      formatCompany();
+      formatCategory();
+      formatIndustry();
+    }
+  </script>
 </html>
