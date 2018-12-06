@@ -2,6 +2,9 @@ package model;
 
 public abstract class User {
 	protected String name, email, password;
+
+	public User() {
+	}
 	
 	public User(String name, String email, String password) {
 		 this.name = name;

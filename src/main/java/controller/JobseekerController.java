@@ -20,21 +20,23 @@ class JobSeekerController {
     	JobSeeker newJobSeeker = new JobSeeker(params.get("name"), params.get("email"), params.get("password"));
     	jobseekerList.add(newJobSeeker);
         newJobSeeker.add();
-    	return newJobSeeker;
+    	return newJobSeeker.get(params.get("email"));
     }
     
     @PostMapping("signin")
     public String signin(@RequestParam Map<String, String> params) {
-    	for (JobSeeker jobseeker: jobseekerList) {
-    		if (jobseeker.getEmail().equals(params.get("email"))) {
-    			if (jobseeker.getPassword().equals(params.get("password"))) {
-    				return "Logged in!";
-    			} else {
-    				return "Wrong password specified!";
-    			}
-    		}
-    	}
-    	return "User not found!";
+        JobSeeker jobseeker = new JobSeeker();
+        jobseeker = jobseeker.get(params.get("email"));
+        if (jobseeker != null) {
+            if (jobseeker.getPassword().equals(params.get("password"))) {
+                return "{\"email\": \"" + jobseeker.getEmail() + "\","
+                    + "\"code\": 200}";
+            } else {
+                return "{\"Code\": 403}";
+            }
+        } else {
+            return "{\"Code\": 404}";
+        }
     }
 
     @GetMapping("index")
@@ -44,41 +46,40 @@ class JobSeekerController {
 
     @GetMapping("view")
     public JobSeeker view(@RequestParam String email) {
-    	for (JobSeeker jobseeker: jobseekerList) {
-    		if (jobseeker.getEmail().equals(email)) {
-				return jobseeker;
-    		}
-    	}
-    	return null;
+        JobSeeker jobseeker = new JobSeeker();
+    	jobseeker = jobseeker.get(email);
+        if (jobseeker != null) {
+            return jobseeker;
+        } else {
+            return null;
+        }
     }
 
 
     @PostMapping("update")
     public JobSeeker update(@RequestParam Map<String, String> params) {
-    	for (JobSeeker jobseeker: jobseekerList) {
-    		if (jobseeker.getEmail().equals(params.get("email"))) {
-				if (!params.get("name").equals("")) jobseeker.setName(params.get("name"));
-				if (!params.get("email").equals("")) jobseeker.setEmail(params.get("email"));
-				if (!params.get("password").equals("")) jobseeker.setPassword(params.get("password"));
-				if (!params.get("userName").equals("")) jobseeker.setUsername(params.get("userName"));
-				if (!params.get("address").equals("")) jobseeker.setAddress(params.get("address"));
-				if (!params.get("email").equals("")) jobseeker.setEmail(params.get("email"));
-				if (!params.get("phoneNumber").equals("")) jobseeker.setPhoneNumber(params.get("phoneNumber"));
-				// if (!params.get("company").equals("")) jobseeker.setCompany(params.get("name"));
-				return jobseeker;
-    		}
-    	}
-    	return null;
+        JobSeeker jobseeker = new JobSeeker();
+        jobseeker = jobseeker.get(params.get("email"));
+		if (!params.get("name").equals("")) jobseeker.setName(params.get("name"));
+		if (!params.get("password").equals("")) jobseeker.setPassword(params.get("password"));
+		if (!params.get("username").equals("")) jobseeker.setUsername(params.get("username"));
+		if (!params.get("address").equals("")) jobseeker.setAddress(params.get("address"));
+		if (!params.get("email").equals("")) jobseeker.setEmail(params.get("email"));
+		if (!params.get("phoneNumber").equals("")) jobseeker.setPhoneNumber(params.get("phoneNumber"));
+        // jobseeker.save();
+        // return jobseeker.get(params.get("email"));
+        return jobseeker;
     }
 
     @PostMapping("delete")
     public String delete(@RequestParam String email) {
-    	for (JobSeeker jobseeker: jobseekerList) {
-    		if (jobseeker.getEmail().equals(email)) {
-				jobseekerList.remove(jobseeker);
-				return "success";
-    		}
-    	}
-    	return "not found";
+        JobSeeker jobseeker = new JobSeeker();
+        jobseeker = jobseeker.get(email);
+        if (jobseeker != null) {
+            jobseeker.delete();
+            return "{\"Message\": 200}";
+        } else {
+            return "{\"Code\": 404}";
+        }
     }
 }

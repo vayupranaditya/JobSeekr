@@ -3,11 +3,15 @@ package model;
 public class Document {
 	protected String name;
 	protected long id;
-	 public Document(String name) {
+
+	public Document() {
+		
+	}
+	public Document(String name) {
 		 this.name = name;
 	}
 	 
-	 public String getName() {
+	public String getName() {
 		return name;
 	}
 	 
