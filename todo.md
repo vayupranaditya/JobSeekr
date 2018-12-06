@@ -14,35 +14,35 @@
 ### Job
 [x] Add
 [x] Get
-[ ] Index
-[ ] Search
+[x] Index
+[x] Search
 [ ] Update
-[ ] Delete
+[x] Delete
 ### Job Application
-[ ] Add
-[ ] Get
-[ ] IndexByJob
-[ ] IndexByOwner
+[x] Add
+[x] Get
+[x] IndexByJob
+[x] IndexByOwner
 [ ] Update
 [ ] Delete
 ### Company
-[ ] Add
-[ ] Get
-[ ] Index
+[x] Add
+[x] Get
+[x] Index
 [ ] Update
 [ ] Delete
 ### Category
-[ ] Add
-[ ] Get
+[x] Add
+[x] Get
 [ ] Index
 [ ] Update
-[ ] Delete
+[x] Delete
 ### Industry
-[ ] Add
-[ ] Get
-[ ] Index
+[x] Add
+[x] Get
+[x] Index
 [ ] Update
-[ ] Delete
+[x] Delete
 ### Cv
 [ ] Add
 [ ] Get

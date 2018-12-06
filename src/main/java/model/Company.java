@@ -5,10 +5,10 @@ import java.sql.*;
 import database.Database;
 
 public class Company implements Database{
+	protected long id;
 	protected String name, address, city, website, about;
 	protected Industry industry;
 	protected Image logo;
-	protected long id;
 	
 	public Company() {
 	}
@@ -38,36 +38,69 @@ public class Company implements Database{
 	 }
 	 
 	 public Company get(long id) {
-			try {
-	            Class.forName(dbDriver);
-	            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
-	            String query = "SELECT * FROM company WHERE id = ?";
-	            PreparedStatement preparedStmt = conn.prepareStatement(query);
-	            preparedStmt.setLong (1, id);
-	            ResultSet result = preparedStmt.executeQuery();
-				result.absolute(1);
-				long resultId = result.getLong(1);
-	        	String resultName = result.getString(2);
-	        	String resultAddress = result.getString(3);
-	        	String resultCity = result.getString(4);
-	        	String resultWebsite = result.getString(5);
-	        	String resultAbout = result.getString(6);
-	        	String resultIndustryId = result.getString(7);
-	        	Industry industry = new Industry();
-	        	industry = industry.get(resultIndustryId);
-	        	String resultLogo = result.getString(8);
-	        	Image image = null;
-	        	Company company = new Company(
-	        			resultId, resultName, resultAddress, resultCity, resultWebsite, resultAbout, industry, image
-	        			);
-	            conn.close();
-	            return company;
-	        } catch (Exception e) {
-	          	System.err.println("Company error!");
-	          	System.err.println(e.getMessage());
-	          	return null;
-	        }
-		}
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "SELECT * FROM company WHERE id = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setLong (1, id);
+            ResultSet result = preparedStmt.executeQuery();
+			result.absolute(1);
+			long resultId = result.getLong(1);
+        	String resultName = result.getString(2);
+        	String resultAddress = result.getString(3);
+        	String resultCity = result.getString(4);
+        	String resultWebsite = result.getString(5);
+        	String resultAbout = result.getString(6);
+        	String resultIndustryId = result.getString(7);
+        	Industry industry = new Industry();
+        	industry = industry.get(resultIndustryId);
+        	String resultLogo = result.getString(8);
+        	Image image = null;
+        	Company company = new Company(
+        			resultId, resultName, resultAddress, resultCity, resultWebsite, resultAbout, industry, image
+        			);
+            conn.close();
+            return company;
+        } catch (Exception e) {
+          	System.err.println("Company error!");
+          	System.err.println(e.getMessage());
+          	return null;
+        }
+	}
+
+	public Company get(String name, String website) {
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "SELECT * FROM company WHERE name = ? AND website = ?";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.setString (1, name);
+            preparedStmt.setString (2, website);
+            ResultSet result = preparedStmt.executeQuery();
+			result.absolute(1);
+			long resultId = result.getLong(1);
+        	String resultName = result.getString(2);
+        	String resultAddress = result.getString(3);
+        	String resultCity = result.getString(4);
+        	String resultWebsite = result.getString(5);
+        	String resultAbout = result.getString(6);
+        	String resultIndustryId = result.getString(7);
+        	Industry industry = new Industry();
+        	industry = industry.get(resultIndustryId);
+        	String resultLogo = result.getString(8);
+        	Image image = null;
+        	Company company = new Company(
+        			resultId, resultName, resultAddress, resultCity, resultWebsite, resultAbout, industry, image
+        			);
+            conn.close();
+            return company;
+        } catch (Exception e) {
+          	System.err.println("Company error!");
+          	System.err.println(e.getMessage());
+          	return null;
+        }
+	}
 	
 	public void edit(String name, String address, String city, 
 			String website, String about, Industry industry, Image logo) {

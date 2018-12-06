@@ -13,21 +13,40 @@ public class Job implements Database{
 	protected Category category;
 	protected Industry industry;
 
+	public void print(Object o) {
+		System.out.println(o);
+	}
+
 	public Job() {
 	}
 	
 	public Job(String name, String employmentType, String jobSummary, String minQualification, String position, 
 			Date expireDate, long salary, Company company, Category category, Industry industry) {
-		 this.name = name;
-		 this.employmentType = employmentType;
-		 this.jobSummary = jobSummary;
-		 this.minQualification = minQualification;
-		 this.position = position;
-		 this.expireDate = expireDate;
-		 this.salary = salary;
-		 this.company = company;
-		 this.category = category;
-		 this.industry = industry;
+		this.name = name;
+		this.employmentType = employmentType;
+		this.jobSummary = jobSummary;
+		this.minQualification = minQualification;
+		this.position = position;
+		this.expireDate = expireDate;
+		this.salary = salary;
+		this.company = company;
+		this.category = category;
+		this.industry = industry;
+	}
+
+	public Job(long id, String name, String employmentType, String jobSummary, String minQualification, String position, 
+			Date expireDate, long salary, Company company, Category category, Industry industry) {
+		this.id = id;
+		this.name = name;
+		this.employmentType = employmentType;
+		this.jobSummary = jobSummary;
+		this.minQualification = minQualification;
+		this.position = position;
+		this.expireDate = expireDate;
+		this.salary = salary;
+		this.company = company;
+		this.category = category;
+		this.industry = industry;
 	}
 	
 	public void save() {
@@ -69,7 +88,7 @@ public class Job implements Database{
             preparedStmt.setLong (1, id);
             ResultSet result = preparedStmt.executeQuery();
 			result.absolute(1);
-			id = result.getLong(1);
+			long resultId = result.getLong(1);
 			String name = result.getString(2);
             String employmentType = result.getString(3);
             String jobSummary = result.getString(4);
@@ -86,7 +105,7 @@ public class Job implements Database{
 //            category = category.get(categoryId);
             Industry industry = new Industry();
             industry = industry.get(industryId);
-        	Job job = new Job(name, employmentType, jobSummary, minQualification, position, 
+        	Job job = new Job(resultId, name, employmentType, jobSummary, minQualification, position, 
 				expireDate, salary, company, category, industry);
             conn.close();
             return job;
@@ -144,10 +163,11 @@ public class Job implements Database{
             Class.forName(dbDriver);
             Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
             String query = 
-            	"DELETE FROM job " 
+            	"DELETE FROM job" 
 	                + " WHERE id = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setLong (1, id);
+            print(preparedStmt.toString());
             preparedStmt.execute();
             conn.close();
         } catch (Exception e) {

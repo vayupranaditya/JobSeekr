@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="js/job.js"></script>
   </head>
-  <body>
+  <body onload="getAllJobs()">
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
@@ -177,58 +178,7 @@
                 </div>
               </div>
             </div>
-            <div class="box">
-              <article class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <strong>Backend Programmer (Part time)</strong> <br />
-                      Proofn Indonesia <br />
-                      Bandung, Indonesia | IDR. 4.000.000 - 6.000.000<br />
-                      <small class="is-pulled-right">Posted on Nov 1 2018, until Dec 20 2018</small>
-                    </p>
-                  </div>
-                </div>
-              </article>
-              <article class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <strong>UI/UX Designer (Full time)</strong> <br />
-                      Bukalapak <br />
-                      Jakarta, Indonesia | IDR 6.000.000 - 9.000.000 <br />
-                      <small class="is-pulled-right">Posted on Oct 30 2018, until Nov 29 2018</small>
-                    </p>
-                  </div>
-                </div>
-              </article>
-              <article class="media">
-                <figure class="media-left">
-                  <p class="image is-64x64">
-                    <img src="https://bulma.io/images/placeholders/128x128.png">
-                  </p>
-                </figure>
-                <div class="media-content">
-                  <div class="content">
-                    <p>
-                      <strong>{{Job Name}} ({{Employment Type}})</strong> <br />
-                      {{Company name}}<br />
-                      {{Location}} | {{Salary}} <br />
-                      <small class="is-pulled-right">Posted on {{post date}}, until {{expire date}}</small>
-                    </p>
-                  </div>
-                </div>
-              </article>
+            <div class="box" id="job-list">
             </div>
           </div>
           <div class="column">

@@ -3,16 +3,12 @@ package model;
 public class Resume extends Document{
 	public Resume() {
 	}
-	public Resume(String name) {
-		 super(name);
+	public Resume(String name, String owner) {
+		 super(name, owner);
 	}
-	 
-	public String getName() {
-		return name;
-	}
-	 
-	 public void setName(String name) {
-		this.name = name;
+
+	public void save() {
+		
 	}
 
 	public Resume get(long id) {

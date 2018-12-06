@@ -20,12 +20,12 @@ public class IndustryController {
                 params.get("id")
                 );
         newIndustry.save();
-    	return newIndustry;
+    	return newIndustry.get(params.get("id"));
     }
 
     @GetMapping("index")
     public ArrayList <Industry> index() {
-        Industry industry = new Industry(null, null);
+        Industry industry = new Industry();
         // ArrayList <Industry> industryList = industry.getAll();
         ArrayList <Industry> industryList = new ArrayList <Industry>();
     	return industryList;

@@ -3,8 +3,8 @@ package model;
 public class Cv extends Document{
 	public Cv(){
 	}
-	public Cv(String name) {
-		 super(name);
+	public Cv(String name, String owner) {
+		 super(name, owner);
 	}
 	 
 	public String getName() {

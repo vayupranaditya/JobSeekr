@@ -21,6 +21,7 @@ public class CompanyController {
      public Company add(@RequestParam Map<String, String> params) {
     	Industry industry = new Industry();
     	industry = industry.get(params.get("industry"));
+        System.out.println(params.get("industry"));
     	Image image = null;
      	Company newCompany = new Company(
                  params.get("name"), 
@@ -33,7 +34,7 @@ public class CompanyController {
                  );
      	companyList.add(newCompany);
      	newCompany.save();
-     	return newCompany;
+     	return newCompany.get(params.get("name"), params.get("website"));
      }
 
     @GetMapping("index")
