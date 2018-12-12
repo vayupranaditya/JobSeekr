@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.*;
 import model.Category;
 
+@CrossOrigin
 @RestController
 @RequestMapping("category")
 public class CategoryController {
@@ -32,10 +34,8 @@ public class CategoryController {
 
     @GetMapping("view")
     public Category view(@RequestParam long id) {
-    // public ArrayList <String> view(@RequestParam String id) {
     	Category category = new Category();
         return category.get(id);
-        // return category;
     }
 
 

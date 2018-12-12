@@ -5,12 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.awt.Image;
 import java.util.*;
 import model.Company;
 import model.Industry;
 
+@CrossOrigin
 @RestController
 @RequestMapping("company")
 public class CompanyController {

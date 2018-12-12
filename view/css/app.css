@@ -3,6 +3,14 @@ body {
 	min-height: 101vh;
 }
 
+
+
+.index-body {
+	background-color: #000;
+	opacity: .9;
+	min-height: 101vh;
+}
+
 .light-grey-background {
 	background-color: #EEE;
 }
@@ -105,4 +113,33 @@ body {
 
 .push-inside {
 	padding: 1%;
+}
+
+.bg {
+	position: fixed;
+	z-index: -2;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.has-outline {
+	-webkit-text-stroke: .7px #444;
+}
+
+.push-left-a-bit {
+	position: relative;
+	left: -0.5vw;
+}
+
+.black-transparent {
+	z-index: -1;
+	background-color: #000;
+	opacity: .5;
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	left: 0px;
+	top: 0px;
 }

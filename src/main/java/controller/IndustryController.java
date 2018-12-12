@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.*;
 import model.Industry;
 
+@CrossOrigin
 @RestController
 @RequestMapping("industry")
 public class IndustryController {
@@ -23,12 +25,15 @@ public class IndustryController {
     	return newIndustry.get(params.get("id"));
     }
 
-    @GetMapping("index")
+    @GetMapping("all")
     public ArrayList <Industry> index() {
         Industry industry = new Industry();
-        // ArrayList <Industry> industryList = industry.getAll();
-        ArrayList <Industry> industryList = new ArrayList <Industry>();
-    	return industryList;
+        ArrayList <String> indices = industry.index();
+        ArrayList <Industry> industryList = new ArrayList();
+        for (String id : indices) {
+            industryList.add(industry.get(id));
+        }
+        return industryList;
     }
 
     @GetMapping("view")

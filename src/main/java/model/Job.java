@@ -2,6 +2,7 @@ package model;
 
 import java.util.Date;
 import java.sql.*;
+import java.util.ArrayList;
 import database.Database;
 
 public class Job implements Database{
@@ -78,6 +79,51 @@ public class Job implements Database{
           System.err.println(e.getMessage());
         }
 	}
+
+	public ArrayList <Long> index() {
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "SELECT id FROM job";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            ResultSet result = preparedStmt.executeQuery();
+            ArrayList <Long> indices = new ArrayList <>();
+            result.first();
+            indices.add(result.getLong(1));
+            while (result.next()) {
+            	indices.add(result.getLong(1));
+            }
+            conn.close();
+            return indices;
+        } catch (Exception e) {
+          	System.err.println("Job error!");
+          	System.err.println(e.getMessage());
+          	return null;
+        }
+	}
+
+	public ArrayList <Long> search(String name) {
+		try {
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "SELECT id FROM job WHERE position LIKE '%" + name + "%'";
+            System.out.println(query);
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            ResultSet result = preparedStmt.executeQuery();
+            ArrayList <Long> indices = new ArrayList <>();
+            result.first();
+            indices.add(result.getLong(1));
+            while (result.next()) {
+            	indices.add(result.getLong(1));
+            }
+            conn.close();
+            return indices;
+        } catch (Exception e) {
+          	System.err.println("Job error!");
+          	System.err.println(e.getMessage());
+          	return null;
+        }
+	}
 	
 	public Job get(long id) {
 		try {
@@ -97,12 +143,13 @@ public class Job implements Database{
             Date expireDate = result.getDate(7);
             long salary = result.getLong(8);
             long companyId = result.getLong(9);
-            String categoryId = result.getString(10);
+            long categoryId = result.getLong(10);
             String industryId = result.getString(11);
             Company company = new Company();
-//            company = company.get(companyId);
+           	company = company.get(companyId);
             Category category = new Category();
-//            category = category.get(categoryId);
+           	System.out.println(categoryId);
+           	category = category.get(categoryId);
             Industry industry = new Industry();
             industry = industry.get(industryId);
         	Job job = new Job(resultId, name, employmentType, jobSummary, minQualification, position, 

@@ -72,7 +72,7 @@ public class Category implements Database{
 		try {
             Class.forName(dbDriver);
             Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
-            String query = "SELECT * FROM category WHERE name = ?";
+            String query = "SELECT * FROM category WHERE id = ?";
             PreparedStatement preparedStmt = conn.prepareStatement(query);
             preparedStmt.setString (1, name);
             ResultSet result = preparedStmt.executeQuery();

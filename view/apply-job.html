@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="js/job.js"></script>
+    <script defer src="js/auth.js"></script>
   </head>
-  <body>
+  <body onload="callFunctions()">
     <nav class="white-background custom-nav" role="navigation" aria-label="main navigation">
       <div class="columns">
         <div class="column is-4 navbar-left">
@@ -38,11 +40,11 @@
         </div>
         <div class="column is-2">
           <div class="navbar-item has-dropdown is-hoverable is-pulled-right">
-            <a class="navbar-link">
+            <a class="navbar-link jobseeker-name">
               {Username}
             </a>
             <div class="navbar-dropdown">
-              <a class="navbar-item">
+              <a class="navbar-item" href="jobseeker-profile.html">
                 <span class="icon is-small is-left">
                   <i class="fas fa-user-cog"></i>
                 </span>
@@ -55,7 +57,7 @@
                 &nbsp&nbsp Report an issue
               </a>
               <hr class="navbar-divider">
-              <a class="navbar-item">
+              <a class="navbar-item" onClick="signout()">
                 <span class="icon is-small is-left">
                   <i class="fas fa-sign-out-alt"></i>
                 </span>
@@ -94,10 +96,10 @@
                   </figure>
                 </div>
                 <div class="column is-8">
-                  <span class="title is-4">{{Name}}</span><br/>
-                  <span class="subtitle is-5">{{Address}}</span><br/>
-                  <span class="subtitle is-5">{{Email}}</span><br/>
-                  <span class="subtitle is-5">{{Phone number}}</span><br/>
+                  <span class="title is-4 jobseeker-name">{{Name}}</span><br/>
+                  <span class="subtitle is-5 jobseeker-address">{{Address}}</span><br/>
+                  <span class="subtitle is-5 jobseeker-email">{{Email}}</span><br/>
+                  <span class="subtitle is-5 jobseeker-phone-number">{{Phone number}}</span><br/>
                   <button class="button is-info">&nbsp&nbspEdit&nbsp&nbsp</button>
                 </div>
                 <div class="column is-1">
@@ -110,8 +112,10 @@
                   <span class="subtitle is-4">Summary</span>
                 </div>
                 <div class="column is-8">
-                  <span class="subtitle is-5">{{Summary}}</span><br/>
-                  <button class="button is-info">&nbsp&nbspEdit&nbsp&nbsp</button>
+                  <div id="application-summary">
+                    <span class="subtitle is-5 jobseeker-summary" id="summary-content">{{Summary}}</span><br/>
+                  </div>
+                  <button class="button is-info" id="summary-edit-btn" onclick="editApplySummary()">&nbsp&nbspEdit&nbsp&nbsp</button>
                 </div>
                 <div class="column is-1">
                 </div>
@@ -161,7 +165,7 @@
                 </div>
               </div>
             </div>
-            <div class="box">
+            <!-- <div class="box">
               <div class="columns">
                 <div class="column is-3">
                   <span class="subtitle is-4">Document</span>
@@ -175,12 +179,22 @@
                 <div class="column is-1">
                 </div>
               </div>
-            </div>
-            <a href="#" class="button is-info is-fullwidth is-medium">Apply for job!</a>
+            </div> -->
+            <button onclick="apply()" class="button is-info is-fullwidth is-medium" type="button"">Apply for job!</button>
           </div>
           <div class="column">
           </div>
         </div>
       </div>
   </body>
+  <script>
+    function callFunctions() {
+      checkAuth();
+      formatForUser();
+      formatJob();
+      formatCompany();
+      formatCategory();
+      formatIndustry();
+    }
+  </script>
 </html>

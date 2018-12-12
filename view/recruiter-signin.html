@@ -38,7 +38,7 @@
                 <div class="column is-8">
                   <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                      <input class="input" type="email" placeholder="Email">
+                      <input class="input" id="recruiter-signin-email-input" type="email" placeholder="Email">
                       <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                       </span>
@@ -46,7 +46,7 @@
                   </div>
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input class="input" type="password" placeholder="Password">
+                      <input class="input" id="recruiter-signin-password-input" type="password" placeholder="Password">
                       <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                       </span>
@@ -54,7 +54,7 @@
                   </div>
                   <div class="field">
                     <p class="control">
-                      <input class="button is-info is-fullwidth" type="submit" name="submit" value="Signin">
+                      <button onclick="recruiterSignin()" class="button is-info is-fullwidth" name="btnSubmit" type="button">Signin</button>
                     </p>
                   </div>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="column is-8">
                   <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                      <input class="input" type="text" placeholder="Name">
+                      <input id="recruiter-signup-name-input" class="input" type="text" placeholder="Name" name="name">
                       <span class="icon is-small is-left">
                         <i class="fas fa-user"></i>
                       </span>
@@ -81,7 +81,7 @@
                   </div>
                   <div class="field">
                     <p class="control has-icons-left has-icons-right">
-                      <input class="input" type="email" placeholder="Email">
+                      <input id="recruiter-signup-email-input" class="input" type="email" placeholder="Email" name="email">
                       <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                       </span>
@@ -89,7 +89,7 @@
                   </div>
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input class="input" type="password" placeholder="Password">
+                      <input id="recruiter-signup-password-input" class="input" type="password" placeholder="Password" name="password">
                       <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                       </span>
@@ -97,7 +97,7 @@
                   </div>
                   <div class="field">
                     <p class="control has-icons-left">
-                      <input class="input" type="password" placeholder="Repeat password">
+                      <input id="recruiter-signup-password-confirm-input" class="input" type="password" placeholder="Repeat password" name="password_confirmation">
                       <span class="icon is-small is-left">
                         <i class="fas fa-lock"></i>
                       </span>
@@ -113,7 +113,7 @@
                   </div>
                   <div class="field">
                     <p class="control">
-                      <input class="button is-info is-fullwidth" type="submit" name="submit" value="Signup">
+                      <button onclick="recruiterSignup()" id="jobseeker-signup-btn" class="button is-info is-fullwidth" name="btnSubmit" type="button">Signup</button>
                     </p>
                   </div>
                 </div>
@@ -129,4 +129,5 @@
     </div>
   </section>
   </body>
+  <script defer src="js/auth.js"></script>
 </html>

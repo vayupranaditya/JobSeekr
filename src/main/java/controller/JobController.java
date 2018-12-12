@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.*;
 import java.text.SimpleDateFormat;
 import model.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("job")
 public class JobController {
@@ -38,10 +40,27 @@ public class JobController {
     	return newJob;
     }
 
-    // @GetMapping("index")
-    // public ArrayList <Job> index() {
-    // 	return jobList;
-    // }
+    @GetMapping("all")
+    public ArrayList <Job> index() {
+    	Job job = new Job();
+        ArrayList <Long> indices = job.index();
+        ArrayList <Job> jobList = new ArrayList();
+        for (Long id : indices) {
+            jobList.add(job.get(id));
+        }
+        return jobList;
+    }
+
+    @GetMapping("search")
+    public ArrayList <Job> search(String name) {
+        Job job = new Job();
+        ArrayList <Long> indices = job.search(name);
+        ArrayList <Job> jobList = new ArrayList();
+        for (Long id : indices) {
+            jobList.add(job.get(id));
+        }
+        return jobList;
+    }
 
     @GetMapping("view")
     public Job view(@RequestParam long id) {

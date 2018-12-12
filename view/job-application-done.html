@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
     <link rel="stylesheet" href="css/app.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="js/job.js"></script>
+    <script defer src="js/auth.js"></script>
   </head>
-  <body>
+  <body onload="callFunctions()">
     <nav class="white-background custom-nav" role="navigation" aria-label="main navigation">
       <div class="columns">
         <div class="column is-4 navbar-left">
@@ -38,7 +40,7 @@
         </div>
         <div class="column is-2">
           <div class="navbar-item has-dropdown is-hoverable is-pulled-right">
-            <a class="navbar-link">
+            <a class="navbar-link jobseeker-name">
               {Username}
             </a>
 
@@ -56,7 +58,7 @@
                 &nbsp&nbsp Report an issue
               </a>
               <hr class="navbar-divider">
-              <a class="navbar-item">
+              <a class="navbar-item" onClick="signout()">
                 <span class="icon is-small is-left">
                   <i class="fas fa-sign-out-alt"></i>
                 </span>
@@ -93,10 +95,11 @@
               </div>
               <br/>
               <span class="subtitle is-5">Your application has been sent to</span><br/>
-              <span class="subtitle is-5">{{company.name}}. Give them some time to</span><br/>
+              <span class="subtitle is-5 company-name">{{company.name}}</span>
+              <span class="subtitle is-5">. Give them some time to</span><br/>
               <span class="subtitle is-5">review your application. You will notified soon!</span><br/>
               <br/>
-              <a href="#" class="button is-info">&nbsp&nbspGot it!&nbsp&nbsp</a>
+              <a href="jobseeker-dashboard.html" class="button is-info">&nbsp&nbspGot it!&nbsp&nbsp</a>
             </div>
           </div>
           <div class="column">
@@ -104,4 +107,11 @@
         </div>
       </div>
   </body>
+  <script>
+    function callFunctions() {
+      checkAuth();
+      formatForUser();
+      formatCompany();
+    }
+  </script>
 </html>

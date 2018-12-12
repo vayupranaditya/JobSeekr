@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.*;
 import model.User;
 import model.JobSeeker;
 
+@CrossOrigin
 @RestController
 @RequestMapping("jobseeker")
 class JobSeekerController {
@@ -25,6 +27,7 @@ class JobSeekerController {
     
     @PostMapping("signin")
     public String signin(@RequestParam Map<String, String> params) {
+        JobSeeker jobseeker = new JobSeeker();
         jobseeker = jobseeker.get(params.get("email"));
         if (jobseeker != null) {
             if (jobseeker.getPassword().equals(params.get("password"))) {

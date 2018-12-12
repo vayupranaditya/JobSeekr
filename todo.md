@@ -3,13 +3,13 @@
 [x] Signup
 [x] Signin
 [ ] Edit Profile
-[ ] Signout
+[x] Signout
 [x] Delete account
 ### Recruiter
 [x] Signup
 [x] Signin
 [ ] Edit Profile
-[ ] Signout
+[x] Signout
 [x] Delete account
 ### Job
 [x] Add

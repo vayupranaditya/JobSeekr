@@ -5,10 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.*;
 import model.User;
 import model.Recruiter;
 
+@CrossOrigin
 @RestController
 @RequestMapping("recruiter")
 public class RecruiterController {

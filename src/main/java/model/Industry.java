@@ -1,11 +1,12 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
 import database.Database;
 
 public class Industry implements Database{
 
-	protected String name, id;
+	protected String id, name;
 
 	public Industry(){
 	}
@@ -33,29 +34,27 @@ public class Industry implements Database{
 	}
 
 	// PENYEBAB ERROR
-	// public ArrayList <Industry> getAll() {
-	// 	try {
-	// 		ArrayList <Industry> industryList = new ArrayList <Industry>();
- //            Class.forName(dbDriver);
- //            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
- //            String query = "SELECT * FROM industry";
- //            PreparedStatement preparedStmt = conn.prepareStatement(query);
- //            ResultSet result = preparedStmt.executeQuery();
- //            result.first();
- //            while (result.next()) {
- //            	String resultName = result.getString("name");
- //            	String resultId = result.getString("id");
- //            	// industryList.add(new Industry(resultName, resultId));
- //            }
- //            conn.close();
- //            // return industryList;
- //            return new ArrayList <Industry>();
- //        } catch (Exception e) {
- //          System.err.println("Industry error!");
- //          System.err.println(e.getMessage());
- //          return null;
- //        }	
-	// }
+	public ArrayList <String> index() {
+		try {
+			ArrayList <String> indices = new ArrayList <>();
+            Class.forName(dbDriver);
+            Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPwd);
+            String query = "SELECT id FROM industry";
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            ResultSet result = preparedStmt.executeQuery();
+            result.first();
+            indices.add(result.getString("id"));
+            while (result.next()) {
+            	indices.add(result.getString("id"));
+            }
+            conn.close();
+            return indices;
+        } catch (Exception e) {
+          System.err.println("Industry error!");
+          System.err.println(e.getMessage());
+          return null;
+        }	
+	}
 	// END PENYEBAB ERROR
 
 	public Industry get(String id) {
